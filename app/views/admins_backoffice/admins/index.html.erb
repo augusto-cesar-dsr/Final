@@ -1,0 +1,51 @@
+<h1>List Admins</h1>
+
+<div class="row">
+  <div class="col-sm-12">
+    <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+      <thead>
+        <tr role="row">
+          <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 57px;">
+            #
+          </th>
+          <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 61px;">
+            Email
+          </th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 57px;">
+            #
+          </th>
+          <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 61px;">
+            Email
+          </th>
+        </tr>
+      </tfoot>
+      <tbody>
+        <% @admins.each do |admin|%>
+          <tr class="odd">
+            <td class="sorting_1">
+              <%= admin.id %>
+            </td>
+            <td>
+              <%= admin.email %>
+            </td>
+            <td style="width: 100px">
+
+              <%= link_to edit_admins_backoffice_admin_path(admin), class:"btn btn-primary btn-circle" do %>
+                <i class="fa fa-edit"></i>
+              <% end %>
+            
+              <button type="button" class="btn btn-danger btn-circle">
+                <i class="fa fa-minus"></i>
+              </button>
+              
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
