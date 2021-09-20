@@ -40,12 +40,12 @@
     <!--Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <!--Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <%= link_to admins_backoffice_welcome_index_path, class:"sidebar-brand d-flex align-items-center justify-content-center" do %>
         <div class="sidebar-brand-icon ">
           <i class="fa fa-microchip"></i>
         </div>
         <div class="sidebar-brand-text mx-3">Backoffice Admin<sup><%=Date.today.year%></sup></div>
-      </a>
+      <% end %>
       <!--Divider -->
       <hr class="sidebar-divider my-0">
 
@@ -144,10 +144,19 @@
     </div>
   </div>
 
-
   <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag 'admins_backoffice' %>
-
+  
+  <% if notice %>
+    <%= javascript_tag do %>
+      $.bootstrapGrowl('<%= notice %>', {
+        type: 'success',
+        align: 'right',
+        allow_dismiss: true,
+        stackup_spacing: 10
+      });
+    <% end %>
+  <% end %>
 </body>
 
 </html>

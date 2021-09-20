@@ -41,6 +41,7 @@ gem 'devise'
 gem 'rails-i18n', '~> 5.1'
 gem 'tty-spinner'
 gem 'faker'
+gem 'kaminari'
 #################################
 
 group :development, :test do
