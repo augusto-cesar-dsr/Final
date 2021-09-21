@@ -1,1 +1,3 @@
 tmp/cache/*
+tmp/pids/*
+tmp/cache/*
