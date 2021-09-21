@@ -1,7 +1,8 @@
 namespace :dev do
   
   DEFAULT_PASSWORD = 123456
-  
+  DEFAULT_FILES_PATH = File.join(Rails.root, 'lib', 'tmp')
+
   desc "Configures the development environment"
   task setup: :environment do
     if Rails.env.development?
@@ -12,6 +13,7 @@ namespace :dev do
       plot_with_load('Adding Default Admin') { %x(rails dev:add_default_admin) }
       plot_with_load('Adding Extra Admins') { %x(rails dev:add_extra_admins) }
       plot_with_load('Adding Default User') { %x(rails dev:add_default_user) }
+      plot_with_load('Adding Default Subjects') {%x(rails dev:add_subjects)}
       # %x(rails dev:add_mining_types)
       # %x(rails dev:add_coins)
 
@@ -47,6 +49,17 @@ namespace :dev do
         password: DEFAULT_PASSWORD,
         password_confirmation: DEFAULT_PASSWORD
       )
+  end
+  
+  desc "Add default subjects"
+  task add_subjects: :environment do
+    
+    file_name = 'subjects.txt'
+    file_path = File.join(DEFAULT_FILES_PATH, file_name)
+    
+    File.open(file_path, 'r').each do |line|
+      Subject.create!(description: line.strip)
+    end
   end
   
   private
