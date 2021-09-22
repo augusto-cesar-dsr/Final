@@ -59,12 +59,17 @@
       <!--Nav Item - Dashboard -->
       <li class="nav-item">
         <%= link_to admins_backoffice_admins_path, class:"nav-link" do %>
-          <i class="fas fa-fw fa-users"></i>Admins
+          <i class="fas fa-fw fa-users"></i>Administradores
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to admins_backoffice_subjects_path, class:"nav-link" do %>
           <i class="fas fa-fw fa-file"></i> Assuntos/Áreas
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to admins_backoffice_questions_path, class:"nav-link" do %>
+          <i class="fa fa-th-list fa-fw"></i> Questões
         <% end %>
       </li>
       <!--Divider -->

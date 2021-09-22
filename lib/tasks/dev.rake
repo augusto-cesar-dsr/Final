@@ -14,8 +14,7 @@ namespace :dev do
       plot_with_load('Adding Extra Admins') { %x(rails dev:add_extra_admins) }
       plot_with_load('Adding Default User') { %x(rails dev:add_default_user) }
       plot_with_load('Adding Default Subjects') {%x(rails dev:add_subjects)}
-      # %x(rails dev:add_mining_types)
-      # %x(rails dev:add_coins)
+      plot_with_load('Adding Some Questions and Answers') {%x{rails dev:add_answers_and_questions}}
 
     else
       puts "You don't are in development environment"
@@ -53,23 +52,32 @@ namespace :dev do
   
   desc "Add default subjects"
   task add_subjects: :environment do
-    
     file_name = 'subjects.txt'
     file_path = File.join(DEFAULT_FILES_PATH, file_name)
-    
     File.open(file_path, 'r').each do |line|
       Subject.create!(description: line.strip)
     end
   end
   
+  desc "Add questions and answers"
+  task add_answers_and_questions: :environment do
+    Subject.all.each do |subject|
+      rand(5..10).times do |i|
+        Question.create!(
+          description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
+          subject: subject
+        )
+      end
+    end
+  end
+
   private
+
     def plot_with_load(messenge_entry, messenge_out=' (Done!)')
-    
       spinner = TTY::Spinner.new("[:spinner] #{messenge_entry} ...", format: :pong)
       spinner.auto_spin
       yield
       spinner.success("#{messenge_out}")
-    
     end
 
 end

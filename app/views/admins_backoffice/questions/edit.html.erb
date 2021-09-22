@@ -1,0 +1,19 @@
+</br>
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Editing</h1>
+  </div>
+</div>
+</br>
+<% if @question.errors.any? %>
+  <div class="alert alert-danger d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <ul>
+      <% @question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+
+    </ul>
+  </div>
+<%end%>
+<%= render partial: 'admins_backoffice/questions/shared/form', locals: {action_message: "Editing"} %>
