@@ -42,6 +42,7 @@ gem 'rails-i18n', '~> 5.1'
 gem 'tty-spinner'
 gem 'faker'
 gem 'kaminari'
+gem 'cocoon'
 #################################
 
 group :development, :test do
