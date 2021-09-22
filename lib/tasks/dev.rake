@@ -63,16 +63,43 @@ namespace :dev do
   task add_answers_and_questions: :environment do
     Subject.all.each do |subject|
       rand(5..10).times do |i|
-        Question.create!(
-          description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
-          subject: subject
-        )
+        params = create_question_params(subject)
+        answers_array = params[:question][:answers_attributes]
+        add_answers(answers_array)
+        elect_true_answer(answers_array)
+        Question.create!(params[:question])
       end
     end
   end
 
   private
 
+    def create_answer_params(correct = false)
+      { description: Faker::Lorem.sentence, correct: correct }
+    end
+    
+    def create_question_params(subject = Subject.all.sample)
+      { question: {
+          description:"#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
+          subject: subject,
+          answers_attributes: []
+        }
+      }
+    end
+
+    def add_answers(answers_array = [])
+      rand(2..5).times do |j|
+        answers_array.push(
+          create_answer_params
+        )
+      end
+    end
+
+    def elect_true_answer(answers_array)
+      index = rand(answers_array.size)
+      answers_array[index] = create_answer_params(true)
+    end
+    
     def plot_with_load(messenge_entry, messenge_out=' (Done!)')
       spinner = TTY::Spinner.new("[:spinner] #{messenge_entry} ...", format: :pong)
       spinner.auto_spin
