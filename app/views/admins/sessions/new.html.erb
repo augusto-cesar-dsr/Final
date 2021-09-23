@@ -1,30 +1,62 @@
-<h2>Log in - Admins</h2>
-
 <% flash.each do |key, value| %>
         <div class="flash <%= key %>"><%= value %></div>
 <% end %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<!-- Outer Row -->
+<div class="row justify-content-center">
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+  <div class="col-xl-10 col-lg-12 col-md-9">
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+          <div class="col-lg-6">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+              </div>
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name), class:"user") do |f| %>
+                
+                <div class="field form-group">
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", 
+                                class:"form-control form-control-user", 
+                                'aria-describedby': "emailHelp",
+                                placeholder:"Enter Email Address..." %>
+                </div>
+
+                <div class="fieldform-group">
+                  <%= f.password_field :password, autocomplete: "current-password", class:"form-control form-control-user", placeholder:"Password" %>
+                </div>
+                
+                <% if devise_mapping.rememberable? %>
+                  <div class="field form-group custom-control custom-checkbox small">
+                    <%= f.check_box :remember_me, class:"custom-control-input" %>
+                    <%= f.label :remember_me, class:"custom-control-label" %>
+                  </div>
+                <% end %>
+                
+                <div class="actions">
+                  <%= f.submit "Log in", class:"btn btn-primary btn-user btn-block" %>
+                </div>
+                <hr>
+                <!--<a href="#" class="btn btn-google btn-user btn-block">
+                  <i class="fab fa-google fa-fw"></i> Login with Google
+                </a>
+                <a href="#" class="btn btn-facebook btn-user btn-block">
+                  <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                </a>-->
+              <% end %>
+              <%= render "admins/shared/links" %>
+             
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
 
-<%= render "admins/shared/links" %>
+</div>
