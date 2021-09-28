@@ -100,8 +100,27 @@
 
 <main class="container">
   <div class="bg-light p-5 rounded">
-    <%= yield %>
+    <h1>Site::Welcome#index</h1>
+    <p>Find me in app/views/site/welcome/index.html.erb</p>
+
+    <% if user_signed_in? %>
+      
+      <p> <%= current_user.email %> is Logged </p>
+      
+    <% else %>
+      <p> Nobody is logged </p>
+    <% end %>
+
+    <% if admin_signed_in? %>
+      
+      <p> <%= current_admin.email %> is Logged </p>
+      
+    <% else %>
+      <p> No admin is logged </p>
+    <% end %>
+    
   </div>
+  <%= yield %>
 </main>
 
     <%= javascript_include_tag 'application' %>
