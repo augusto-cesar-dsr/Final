@@ -1,5 +1,5 @@
 class Site::WelcomeController < SiteController
   def index
-    @questions = Question.all
+    @questions = Question.includes(:answers).page(params[:page])
   end
 end
