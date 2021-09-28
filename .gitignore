@@ -2,3 +2,4 @@ tmp/cache/*
 tmp/pids/*
 tmp/cache/*
 node_modules
+log/*
