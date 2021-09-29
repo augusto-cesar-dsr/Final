@@ -1,0 +1,25 @@
+var button = document.getElementById('submit_<%= @answer.question_id %>');
+button.classList.remove('btn-outline-secondary');
+button.classList.remove('btn-outline-success');
+button.classList.remove('btn-outline-danger');
+
+ if(<%= @answer.correct %>){
+  button.classList.add('btn-outline-success');
+  button.classList.add('active');
+  $.bootstrapGrowl('congratulations', {
+          type: 'success', // (null, 'info', 'danger', 'success')
+          align: 'right', // ('left', 'right', or 'center')
+          allow_dismiss: false, // If true then will display a cross to close the popup.
+          stackup_spacing: 10 // spacing between consecutively stacked growls.
+          });
+}
+else {
+  button.classList.add('btn-outline-danger');
+  button.classList.add('active');
+  $.bootstrapGrowl('missed', {
+          type: 'danger', // (null, 'info', 'danger', 'success')
+          align: 'right', // ('left', 'right', or 'center')
+          allow_dismiss: false, // If true then will display a cross to close the popup.
+          stackup_spacing: 10 // spacing between consecutively stacked growls.
+          });
+}

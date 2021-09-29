@@ -6,7 +6,7 @@
   <% end %>
 </div>
 <% @questions.each do |question| %>
-  <%= form_with url: site_answer_path, local: true do |form| %>
+  <%= form_with url: site_answer_path do |form| %>
     <div class="content ">
       <div class="content ">
         <h4 class="content ">
@@ -21,14 +21,14 @@
                 <li style="list-style:none">
                   <div class="radio">
                     <label>
-                      <%= radio_button_tag "answer", answer.id %>
+                      <%= radio_button_tag "answer_id", answer.id %>
                       <%= answer.description %>
                     </label>
                   </div>
                 </li>
               <% end %>
               <li style="list-style:none">
-                <%= form.submit "Respond", class:"btn btn-outline-secondary" %>
+                <%= form.submit "Respond", class:"btn btn-outline-secondary", id:"submit_#{question.id}" %>
               </li>
             </ul>
           </div>
