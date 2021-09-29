@@ -1,19 +1,16 @@
 <div class="bg-light p-5 rounded">
-  <% unless params[:term] %>
-    <h3>Last questions...</h3>
-  <% else %>
-    <h3>Results to term "<%= params[:term] %>"...</h3>
-  <% end %>
+  <h3><%= msg_system %></h3>
 </div>
 <% @questions.each do |question| %>
   <%= form_with url: site_answer_path do |form| %>
     <div class="content ">
       <div class="content ">
-        <h4 class="content ">
-          <div class="content " >
-            <%= question.description %>
-          </div>
-        </h4>
+        <h5 class="content">
+          <span style="width: 6rem;">
+            <%= link_to question.subject.description, site_search_subject_path(question.subject_id), class:"btn btn-outline-secondary active badge text-wrap" %>
+          </span>
+          <%= question.description %>
+        </h5>
         <div class="content">
           <div class="content">
             <ul>
