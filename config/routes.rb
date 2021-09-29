@@ -4,8 +4,9 @@ Rails.application.routes.draw do
     get 'welcome/index'
   end
   namespace :site do
-    get 'welcome/index'
-    get 'search', to: 'search#questions'
+    get  'welcome/index'
+    get  'search', to: 'search#questions'
+    post 'answer', to: 'answer#question'
   end
  namespace :admins_backoffice do
     get 'welcome/index' # Dashboard

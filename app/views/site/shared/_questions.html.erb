@@ -1,25 +1,41 @@
-
+<div class="bg-light p-5 rounded">
+  <% unless params[:term] %>
+    <h3>Last questions...</h3>
+  <% else %>
+    <h3>Results to term "<%= params[:term] %>"...</h3>
+  <% end %>
+</div>
 <% @questions.each do |question| %>
-  <div class="content ">
+  <%= form_with url: site_answer_path, local: true do |form| %>
     <div class="content ">
-      <h4 class="content ">
-        <div class="content " >
-          <%= question.description %>
-        </div>
-      </h4>
-      <div class="content">
+      <div class="content ">
+        <h4 class="content ">
+          <div class="content " >
+            <%= question.description %>
+          </div>
+        </h4>
         <div class="content">
-          <ul>
-            <% question.answers.each do |answer| %>
-              <li>
-                <%= answer.description %>
+          <div class="content">
+            <ul>
+              <% question.answers.each do |answer| %>
+                <li style="list-style:none">
+                  <div class="radio">
+                    <label>
+                      <%= radio_button_tag "answer", answer.id %>
+                      <%= answer.description %>
+                    </label>
+                  </div>
+                </li>
+              <% end %>
+              <li style="list-style:none">
+                <%= form.submit "Respond", class:"btn btn-outline-secondary" %>
               </li>
-            <% end %>
-          </ul>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
 <ul class="pagination justify-content-center">
   <%= paginate @questions %>
