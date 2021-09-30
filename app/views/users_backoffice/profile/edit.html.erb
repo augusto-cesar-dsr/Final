@@ -1,59 +1,62 @@
-<form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+<div class="row">
+  <div class="col-md-12 col-sm-12 ">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Profile Data</h2>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <% if @user.errors.any? %>
+          <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
 
-  <div class="item form-group">
-    <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">First Name <span class="required">*</span>
-    </label>
-    <div class="col-md-6 col-sm-6 ">
-      <input type="text" id="first-name" required="required" class="form-control " style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-    </div>
-  </div>
-  <div class="item form-group">
-    <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Last Name <span class="required">*</span>
-    </label>
-    <div class="col-md-6 col-sm-6 ">
-      <input type="text" id="last-name" name="last-name" required="required" class="form-control">
-    </div>
-  </div>
-  <div class="item form-group">
-    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Middle Name / Initial</label>
-    <div class="col-md-6 col-sm-6 ">
-      <input id="middle-name" class="form-control" type="text" name="middle-name">
-    </div>
-  </div>
-  <div class="item form-group">
-    <label class="col-form-label col-md-3 col-sm-3 label-align">Gender</label>
-    <div class="col-md-6 col-sm-6 ">
-      <div id="gender" class="btn-group" data-toggle="buttons">
-        <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-          <input type="radio" name="gender" value="male" class="join-btn" data-parsley-multiple="gender"> &nbsp; Male &nbsp;
-        </label>
-        <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-          <input type="radio" name="gender" value="female" class="join-btn" data-parsley-multiple="gender"> Female
-        </label>
+            </ul>
+          </div>
+        <%end%>
+        <br>
+        <%= form_with(url: users_backoffice_profile_path, model: @user, class:"form-horizontal form-label-left") do |form| %>
+          <div class="item form-group">
+            <%= form.label :first_name, class:"col-form-label col-md-3 col-sm-3 label-align" %>
+            <div class="col-md-6 col-sm-6 ">
+              <%= form.text_field :first_name, class:"form-control " %>
+            </div>
+          </div>
+          <div class="item form-group">
+            <%= form.label :last_name, class:"col-form-label col-md-3 col-sm-3 label-align" %>
+            <div class="col-md-6 col-sm-6 ">
+              <%= form.text_field :last_name, class:"form-control" %>
+            </div>
+          </div>
+          <div class="item form-group">
+            <%= form.label :email, class:"col-form-label col-md-3 col-sm-3 label-align" %>
+            <div class="col-md-6 col-sm-6 ">
+              <%= form.email_field :email, class:"form-control", readonly: true %>
+            </div>
+          </div>
+          <div class="item form-group">
+            <%= form.label :password, class:"col-form-label col-md-3 col-sm-3 label-align" %>
+            <div class="col-md-6 col-sm-6 ">
+              <%= form.password_field :password, class:"form-control" %>
+            </div>
+          </div>
+          <div class="item form-group">
+            <%= form.label :password_confirmation, class:"col-form-label col-md-3 col-sm-3 label-align" %>
+            <div class="col-md-6 col-sm-6 ">
+              <%= form.password_field :password_confirmation, class:"form-control" %>
+            </div>
+          </div>
+          <div class="ln_solid"></div>
+          <div class="item form-group">
+            <div class="col-md-6 col-sm-6 offset-md-3">
+              <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
-  <div class="item form-group">
-    <label class="col-form-label col-md-3 col-sm-3 label-align">Date Of Birth <span class="required">*</span>
-    </label>
-    <div class="col-md-6 col-sm-6 ">
-      <input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy" type="date" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
-      <script>
-        function timeFunctionLong(input) {
-          setTimeout(function() {
-            input.type = 'text';
-          }, 60000);
-        }
-      </script>
-    </div>
-  </div>
-  <div class="ln_solid"></div>
-  <div class="item form-group">
-    <div class="col-md-6 col-sm-6 offset-md-3">
-      <button class="btn btn-primary" type="button">Cancel</button>
-      <button class="btn btn-primary" type="reset">Reset</button>
-      <button type="submit" class="btn btn-success">Submit</button>
-    </div>
-  </div>
-
-</form>
+</div>

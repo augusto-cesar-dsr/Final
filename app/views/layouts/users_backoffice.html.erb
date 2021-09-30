@@ -38,6 +38,7 @@
                 </div>
                 <div class="profile_info">
                   <span>Welcome,</span>
+                  <h1><%= notice %></h1>
                   <h2><%= current_user.full_name %></h2>
                 </div>
               </div>
@@ -49,6 +50,9 @@
               <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                 <ul class="nav flex-column">
                   <li class="nav-item">
+                    <%= link_to users_backoffice_welcome_index_path, class:"nav-link btn-outline-secondary" do %>
+                      <i class="fas fa-home"></i> Home
+                    <% end %>
                     <%= link_to users_backoffice_profile_path, class:"nav-link btn-outline-secondary" do %>
                       <i class="fas fa-user"></i> User Profile Settings
                     <% end %>
@@ -131,7 +135,20 @@
     
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'users_backoffice' %>
-    
-    
+     <%= javascript_tag do %>
+      console.log("teste")
+     <% end %>
+    <% if notice %>
+      <%= javascript_tag do %>
+        console.log("teste")
+        $.bootstrapGrowl('<%= notice %>', {
+          type: 'success',
+          align: 'right',
+          allow_dismiss: true,
+          stackup_spacing: 10
+        });
+      <% end %>
+    <% end %>
+
   </body>
 </html>

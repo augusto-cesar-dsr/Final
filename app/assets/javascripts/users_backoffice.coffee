@@ -5,6 +5,6 @@
 //= require bootstrap-h/dist/js/bootstrap.bundle.min
 //= require fastclick/lib/fastclick
 //= require nprogress/nprogress
-//= require custom
 //= require bootstrap-growl-ifightcrime/jquery.bootstrap-growl
+//= require custom
 
