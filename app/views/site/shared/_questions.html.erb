@@ -7,7 +7,7 @@
       <div class="content ">
         <h5 class="content">
           <span style="width: 6rem;">
-            <%= link_to question.subject.description, site_search_subject_path(question.subject_id), class:"btn btn-outline-secondary active badge text-wrap" %>
+            <%= link_to "#{question.subject.description} (#{question.subject.questions_count})", site_search_subject_path(question.subject_id), class:"btn btn-outline-secondary active badge text-wrap" %>
           </span>
           <%= question.description %>
         </h5>
