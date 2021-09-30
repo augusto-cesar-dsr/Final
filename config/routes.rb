@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   namespace :users_backoffice do
     get 'welcome/index'
+    get 'profile', to: 'profile#edit'
   end
   namespace :site do
     get  'welcome/index'

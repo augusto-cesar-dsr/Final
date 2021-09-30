@@ -24,7 +24,9 @@
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-circle"></i> <span>Central</span></a>
+              <%= link_to users_backoffice_welcome_index_path, class:"site_title" do %>
+                <i class="fa fa-circle"></i> <span>Central</span>
+              <% end %>
             </div>
 
             <div class="clearfix"></div>
@@ -36,7 +38,7 @@
                 </div>
                 <div class="profile_info">
                   <span>Welcome,</span>
-                  <h2><%= current_user.first_name %></h2>
+                  <h2><%= current_user.full_name %></h2>
                 </div>
               </div>
             <!-- /menu profile quick info -->
@@ -47,8 +49,8 @@
               <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                 <ul class="nav flex-column">
                   <li class="nav-item">
-                    <%= link_to '#', class:"nav-link btn-outline-secondary" do %>
-                      <i class="fas fa-user"></i> User
+                    <%= link_to users_backoffice_profile_path, class:"nav-link btn-outline-secondary" do %>
+                      <i class="fas fa-user"></i> User Profile Settings
                     <% end %>
                   </li>
                 </ul>
@@ -110,10 +112,7 @@
           <div class="right_col" role="main">
             <div class="">
               <div class="page-title">
-                <div class="title_left">
-                  <!--<h1>LAYOUT USERS</h1>-->
-                  <%= yield %>
-                </div>
+                <%= yield %>
               </div>
             </div>
           </div>
