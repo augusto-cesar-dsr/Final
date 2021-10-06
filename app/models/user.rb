@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :user_profile
+  
   # Validations
   validates :first_name, presence: true, length: { minimum: 3 }, on: :update
 
