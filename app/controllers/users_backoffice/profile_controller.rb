@@ -7,7 +7,7 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
   
   def update
     if @user.update(params_user)
-      sign_in(@user, bypass: true)
+      bypass_sign_in(@user)
       redirect_to users_backoffice_profile_path, notice: "User has updated!!"
     else
       render :edit
