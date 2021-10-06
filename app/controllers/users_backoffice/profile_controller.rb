@@ -3,12 +3,13 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
   before_action :verify_password, only: [:update]
   
   def edit
+    @user.build_user_profile if @user.user_profile.blank?
   end
   
   def update
     if @user.update(params_user)
       bypass_sign_in(@user)
-      redirect_to users_backoffice_profile_path, notice: "User has updated!!"
+      render :edit, notice: "User has updated!!"
     else
       render :edit
     end
@@ -21,7 +22,7 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
     end
 
     def params_user
-      params_user = params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      params_user = params.require(:user).permit(:first_name, :last_name, :email, :address, :gender, :birthdate, :password, :password_confirmation)
     end
 
     def verify_password
