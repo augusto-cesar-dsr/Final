@@ -44,12 +44,21 @@
                 <%= profile_form.text_field :address, class:"form-control" %>
               </div>
             </div>
+            
             <div class="item form-group">
               <%= profile_form.label :gender, class:"col-form-label col-md-3 col-sm-3 label-align" %>
               <div class="col-md-6 col-sm-6 ">
-                <%= profile_form.text_field :gender, class:"form-control" %>
+                <div id="gender" class="btn-group" data-toggle="buttons">
+                  <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                    <%= profile_form.radio_button :gender, "M", class:"join-btn", "data-parsley-multiple":"gender" %>&nbsp; Male &nbsp; 
+                  </label>
+                  <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                    <%= profile_form.text_field :gender, class:"join-btn", "data-parsley-multiple":"gender" %>&nbsp; Female &nbsp;
+                  </label>
+                </div>
               </div>
             </div>
+
             </div>
             <div class="item form-group">
               <%= profile_form.label :birthdate, class:"col-form-label col-md-3 col-sm-3 label-align" %>
