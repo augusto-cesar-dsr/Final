@@ -18,7 +18,7 @@
           </div>
         <%end%>
         <br>
-        <%= form_with(url: users_backoffice_profile_path, model: @user, class:"form-horizontal form-label-left") do |form| %>
+        <%= form_with(url: users_backoffice_profile_path, local: true, model: @user, class:"form-horizontal form-label-left") do |form| %>
           <div class="item form-group">
             <%= form.label :first_name, class:"col-form-label col-md-3 col-sm-3 label-align" %>
             <div class="col-md-6 col-sm-6 ">
