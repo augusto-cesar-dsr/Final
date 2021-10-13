@@ -1,1 +1,20 @@
-
+<h1>Wellcome</h1>
+<div class="container" style="display: inline-block;">
+  <div class="tile_count">
+    <div class="col-md-4 col-sm-4 tile_stats_count">
+      <span class="count_top"><i class="fa fa-comments"></i> Total</span>
+      <div class="count"><%= @user_statistic.total_questions %></div>
+      <span class="count_bottom"><i class="green"></i>Total questions</span>
+    </div>
+    <div class="col-md-4 col-sm-4  tile_stats_count">
+      <span class="count_top"><i class="fa fa-check-square"></i> Right</span>
+      <div class="count green"><%= @user_statistic.right_questions %></div>
+      <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i></i>Right questions</span>
+    </div>
+    <div class="col-md-4 col-sm-4  tile_stats_count">
+      <span class="count_top"><i class="fa fa-times"></i> Wrong</span>
+      <div class="count red"><%= @user_statistic.wrong_questions %></div>
+      <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i></i>Wrong questions</span>
+    </div>
+  </div>
+</div>
