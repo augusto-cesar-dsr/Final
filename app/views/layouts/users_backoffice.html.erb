@@ -38,7 +38,6 @@
                 </div>
                 <div class="profile_info">
                   <span>Welcome,</span>
-                  <h1><%= notice %></h1>
                   <h2><%= current_user.full_name %></h2>
                 </div>
               </div>
@@ -114,11 +113,7 @@
 
         <!-- page content -->
           <div class="right_col" role="main">
-            <div class="">
-              <div class="page-title">
-                <%= yield %>
-              </div>
-            </div>
+            <%= yield %>
           </div>
         <!-- /page content -->
 

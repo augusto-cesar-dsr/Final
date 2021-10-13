@@ -11,7 +11,7 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
     # puts @user.errors.message
     if @user.update(params_user)
       bypass_sign_in(@user)
-      render :edit, notice: "User has updated!!"
+      redirect_to users_backoffice_profile_path, notice: "User has updated!!"
     else
       render :edit
     end
@@ -19,18 +19,18 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
 
   private
 
-    def set_user
-      @user = User.find(current_user.id)
-    end
+  def set_user
+    @user = User.find(current_user.id)
+  end
 
-    def params_user
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, 
-                                    user_profile_attributes: [:id, :address, :gender, :birthdate])
-    end
+  def params_user 
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, 
+                                  user_profile_attributes: [:id, :address, :gender, :birthdate])
+  end
 
-    def verify_password
-      if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-        params[:user].extract!(:password, :password_confirmation)
-      end
+  def verify_password
+    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+      params[:user].extract!(:password, :password_confirmation)
     end
+  end
 end
