@@ -34,7 +34,7 @@
             <!-- menu profile quick info -->
               <div class="profile clearfix">
                 <div class="profile_pic">
-                  <%= image_tag 'img.jpg', alt:"...", class:"img-circle profile_img" %>
+                  <%= link_to image_tag( avatar_url, alt:"...", class:"img-circle profile_img", id:'imgHome'), '#', "data-toggle":"modal", "data-target":"#profilePictureModal" %>
                 </div>
                 <div class="profile_info">
                   <span>Welcome,</span>
@@ -93,7 +93,7 @@
                   <ul class="navbar-right ml-auto">
                     <div class="nav-item dropdown open">
                       <a href="#" id="userDropdown" class="user-profile nav-link dropdown-toggle" role="button" aria-haspopup="true" data-toggle="dropdown" aria-expanded="false">
-                        <%= image_tag 'img.jpg', alt:"" %>
+                        <%= image_tag avatar_url, alt:"", id:'imgDropdown' %>
                         <%= current_user.first_name %>
                       </a>
                       
@@ -129,7 +129,44 @@
         <!-- /footer content -->
       </div>
     </div>
-    
+    <!-- Modal -->
+      <div class="modal fade" id="profilePictureModal" tabindex="-1" aria-labelledby="profilePictureModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <%= form_with(url: users_backoffice_profile_path, model: current_user, class:"form-horizontal form-label-left") do |form| %>
+              <div class="modal-header">
+                <h5 class="modal-title" id="profilePictureModalLabel">
+                  Avatar
+                </h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <%= form.fields_for :user_profile do |profile_form| %>
+                  <!--<div class="item form-group">-->
+                  <div class= "container">
+                    <div class="row align-items-start">
+                      <%= profile_form.label :avatar %>
+                    </div>
+                    </br>
+                    <div class="row align-items-center">
+                      <%= image_tag(avatar_url, alt:"...", class:"img-circle profile_img", id:'imgModal') %>
+                    </div>
+                    </br>
+                    <div class="row align-items-end">
+                      <%= profile_form.file_field :avatar %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <%= form.submit "Save", class:"btn btn-primary" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <!-- /Modal -->
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'users_backoffice' %>
      <%= javascript_tag do %>
