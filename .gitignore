@@ -12,9 +12,9 @@
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-/log/*
+/log/
 /tmp/*
-/tmp/cache/*
+/tmp/cache
 tmp/cache/bootsnap/*
 !/log/.keep
 !/tmp/.keep
