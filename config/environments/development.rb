@@ -37,6 +37,7 @@ Rails.application.configure do
   
   # Devise config
   config.action_mailer.default_url_options = { host: 'https://augusto-web.maxstudio.com.br/', port: 8093 }
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

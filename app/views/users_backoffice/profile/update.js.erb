@@ -1,0 +1,12 @@
+$('#profilePictureModal').modal('hide');
+
+document.getElementById('imgHome').src ="<%= url_for(@user.user_profile.avatar) %>";
+document.getElementById('imgDropdown').src = "<%= url_for(@user.user_profile.avatar) %>";
+document.getElementById('imgModal').src = "<%= url_for(@user.user_profile.avatar) %>";
+
+$.bootstrapGrowl('Avatar user as updated!!', {
+                  type: 'success',
+                  align: 'right',
+                  allow_dismiss: true,
+                  stackup_spacing: 10
+                });

@@ -1,18 +1,122 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
     <title>Final</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application' %>
-    <%= javascript_include_tag 'application' %>
-    <%# stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%# javascript_include_tag 'application', 'data-turbolinks-track': 'reload'  %>
-  </head>
+    <%= stylesheet_link_tag    'site' %>
 
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/navbar-fixed/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+  </head>
   <body>
-    <h1>LAYOUT SITE</h1>
-    <%= yield %>
+    
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <%= link_to "Final", root_path, class:"navbar-brand" %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+          <!--<ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Disabled</a>
+            </li>
+          </ul>-->
+          <%= form_with(url: site_search_path, local: true, method: :get, class:"d-flex ") do |form| %>
+            <!--<input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search">-->
+            <%= form.text_field :term, class:"form-control me-2 ", type:"search", placeholder:"Search", aria:{label:"Search"} %>
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+          <% end %>
+          |
+          <% if user_signed_in? %>
+            <div class="dropdown">
+              <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <%= current_user.email %>
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <!--<li><a class="dropdown-item" href="#">Action</a></li>-->
+                <li>
+                  <%= link_to users_backoffice_welcome_index_path, class:"dropdown-item" do %>
+                    <i class="fa fa-user" ></i>  Profile
+                  <% end %>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <%= link_to destroy_user_session_path, method: :delete, class:"dropdown-item" do %>
+                    <i class="fas fa-cross" ></i>  Logout
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          <% else %>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <%= link_to "sign in", new_user_session_path, class:"btn btn-outline-secondary nav-links" %>
+              </li>
+              |
+              <li class="nav-item">
+                <%= link_to "sign up", new_user_registration_path, class:"btn btn-outline-secondary nav-links" %>
+              </li>
+            </ul>
+          <% end %>
+        
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+      <%= yield %>
+    </main>
+
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'site' %>
+
+    <% if flash %>
+      <% flash.each do |key, value| %>
+        <%= javascript_tag do %>
+          $.bootstrapGrowl('<%= value %>', {
+          type: 'danger', // (null, 'info', 'danger', 'success')
+          align: 'right', // ('left', 'right', or 'center')
+          allow_dismiss: true, // If true then will display a cross to close the popup.
+          stackup_spacing: 10 // spacing between consecutively stacked growls.
+          });
+        <% end %>
+      <% end %>
+    <% end %>
   </body>
 </html>
